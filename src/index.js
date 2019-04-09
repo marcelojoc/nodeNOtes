@@ -1,8 +1,13 @@
-const express = require('express');
-const exphbs = require('express-handlebars');
-const path = require('path');
-const methodOverride = require('method-override');
-const session = require('express-session');
+const express = require('express');  //  express para el servidor web
+const exphbs = require('express-handlebars'); // para integrar handlebars 
+const path = require('path');     // manejar rutas
+const methodOverride = require('method-override');  // para extender  metodos de envio  en formularios
+const session = require('express-session');     // para manejar sesiones
+/**
+ * connect-flash es un paquete para Express bastante util, nos permite mostrar mensajes en la pantalla bajo ciertas condiciones. 
+ * Por ejemplo para avisar cuando un usuario no tiene suficientes permisos como para realizar una acción, 
+ * o al realizar cualquier otra acción como entrar o salir de su cuenta.
+ */
 const flash = require('connect-flash');
 const passport = require('passport');
 
@@ -12,10 +17,10 @@ require('./database');
 require('./config/passport');
 
 // settings
-app.set('port', process.env.PORT || 4000);
-app.set('views', path.join(__dirname, 'views'));
-app.engine('.hbs', exphbs({
-  defaultLayout: 'main',
+app.set('port', process.env.PORT || 4000);    // configuro el puerto
+app.set('views', path.join(__dirname, 'views')); // seteo las vistas
+app.engine('.hbs', exphbs({                      // aqui seteo  el motor de plantillas
+  defaultLayout: 'main', 
   layoutsDir: path.join(app.get('views'), 'layouts'),
   partialsDir: path.join(app.get('views'), 'partials'),
   extname: '.hbs'
